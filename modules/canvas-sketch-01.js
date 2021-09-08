@@ -4,12 +4,12 @@ import { drawMatrix } from "./frames-matrix";
 const settings = {
   // dimensions: "A4",
   // pixelsPerInch: 300,
-  exporting: true
+  orientation: "portrait"
 };
 
 const draw = () => {
   return ({ context, width, height }) => {
-    context.fillStyle = "white";
+    context.fillStyle = "lightgray";
     context.fillRect(0, 0, width, height);
 
     drawMatrix({
