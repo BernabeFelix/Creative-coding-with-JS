@@ -6,9 +6,14 @@ const context = rectangle.getContext("2d");
 // 1: they will have a fixed width/height
 // 2: some of them should, randomly, have an internal outline
 
-const drawMatrix = (xlength, yLength, size, gap) => {
-  const startPoint = 100;
-
+export const drawMatrix = ({
+  xlength,
+  yLength,
+  size,
+  gap,
+  innerContext = context,
+  startPoint = 100
+}) => {
   const itemsX = new Array(xlength).fill(1);
   const itemsY = new Array(yLength).fill(1);
   const outlineSize = size / 2;
@@ -19,17 +24,17 @@ const drawMatrix = (xlength, yLength, size, gap) => {
       pointX = startPoint + size * i + gap * i;
       pointY = startPoint + size * j + gap * j;
 
-      context.strokeRect(pointX, pointY, size, size);
+      innerContext.strokeRect(pointX, pointY, size, size);
 
       // Draw internal outline randonmly
       if (Math.random() > 0.5) {
         pointX = pointX + outlineSize / 2;
         pointY = pointY + outlineSize / 2;
 
-        context.strokeRect(pointX, pointY, outlineSize, outlineSize);
+        innerContext.strokeRect(pointX, pointY, outlineSize, outlineSize);
       }
     });
   });
 };
 
-drawMatrix(5, 5, 60, 20);
+// drawMatrix(5, 5, 60, 20);
